@@ -1,12 +1,18 @@
 import axios from "axios";
 import Link from "next/link";
 
+interface Blog {
+  id: number;
+  title: string;
+  body: string;
+}
+
 const fetchBlogs = async () => {
   try {
     const res = await axios.get("https://dummyjson.com/posts");
     return res.data.posts;
   } catch (error) {
-    throw new Error("Something went wrong");
+    throw new Error("Something went wrong", { cause: error });
   }
 };
 
@@ -19,7 +25,7 @@ const BlogsPage = async () => {
       </h1>
       {blogs.length > 1 ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {blogs.map((blog: any) => {
+          {blogs.map((blog: Blog) => {
             return (
               <Link
                 key={blog.id}

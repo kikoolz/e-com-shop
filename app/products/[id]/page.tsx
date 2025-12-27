@@ -6,7 +6,7 @@ const fetchProductDetailsById = async (id: string) => {
     const res = await axios.get(`https://dummyjson.com/products/${id}`);
     return res.data;
   } catch (error) {
-    throw new Error("Something went wrong");
+    throw new Error("Something went wrong", { cause: error });
   }
 };
 

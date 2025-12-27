@@ -4,6 +4,13 @@ import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+interface Product {
+  id: number;
+  title: string;
+  price: number;
+  thumbnail: string;
+}
+
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
 
@@ -24,7 +31,7 @@ const ProductsPage = () => {
 
       {products.length > 1 ? (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {products.map((product) => {
+          {products.map((product: Product) => {
             return (
               <Link
                 key={product.id}
